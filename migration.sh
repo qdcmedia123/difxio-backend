@@ -1,0 +1,1 @@
+DATABASE_URL=postgres://limitless@localhost:5432/difxio npm run migrate up
