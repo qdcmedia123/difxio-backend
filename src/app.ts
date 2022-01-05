@@ -13,7 +13,7 @@ app.use(cookieSession({
     secure: process.env.NODE_ENV !== 'test'
 }));
 
-app.all('*', async(req, res) => {
+app.all('*', async() => {
     throw new Error('Unable to find the route');
 });
 
