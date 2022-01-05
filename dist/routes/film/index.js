@@ -8,13 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-require("dotenv").config();
-const app_1 = require("./app");
-const start = () => __awaiter(void 0, void 0, void 0, function* () {
-});
-start();
-app_1.app.listen(process.env.PORT || 8000, () => {
-    console.log(`Starting server at port ${process.env.PORT || 3000}`);
-});
+exports.indexMovieRouter = void 0;
+const express_1 = __importDefault(require("express"));
+const router = express_1.default.Router();
+exports.indexMovieRouter = router;
+router.get('/api/films', (_, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.send('Hello World');
+}));
 //# sourceMappingURL=index.js.map

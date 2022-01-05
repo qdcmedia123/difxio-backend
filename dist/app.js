@@ -17,6 +17,7 @@ const express_1 = __importDefault(require("express"));
 require("express-async-errors");
 const body_parser_1 = require("body-parser");
 const cookie_session_1 = __importDefault(require("cookie-session"));
+const film_1 = require("./routes/film");
 const app = (0, express_1.default)();
 exports.app = app;
 app.set('trust proxy', true);
@@ -25,6 +26,7 @@ app.use((0, cookie_session_1.default)({
     signed: false,
     secure: process.env.NODE_ENV !== 'test'
 }));
+app.use(film_1.indexMovieRouter);
 app.all('*', () => __awaiter(void 0, void 0, void 0, function* () {
     throw new Error('Unable to find the route');
 }));

@@ -2,6 +2,7 @@ import express from 'express';
 import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
+import { indexMovieRouter } from './routes/film';
 
 const app = express();
 
@@ -12,6 +13,8 @@ app.use(cookieSession({
     signed: false, 
     secure: process.env.NODE_ENV !== 'test'
 }));
+
+app.use(indexMovieRouter);
 
 app.all('*', async() => {
     throw new Error('Unable to find the route');

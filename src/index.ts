@@ -8,6 +8,6 @@ const start = async() => {
 
 start();
 
-app.listen(3000, () => {
-    console.log(`Starting server at port ${3000}`)
+app.listen(process.env.PORT || 8000, () => {
+    console.log(`Starting server at port ${process.env.PORT || 3000}`)
 });
