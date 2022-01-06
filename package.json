@@ -6,8 +6,8 @@
   "scripts": {
     "watch": "tsc -w",
     "build": "tsc",
-    "dev": "nodemon dist/index.js",
-    "start": "node dist/index.js",
+    "dev": "nodemon dist/src/index.js",
+    "start": "node dist/src/index.js",
     "start2": "ts-node src/index.ts",
     "dev2": "ts-node --exec src/index.ts",
     "test": "jest --watchAll --no-cache",
@@ -37,6 +37,7 @@
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
     "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.8",
     "@types/pg": "^8.6.3",
     "@types/supertest": "^2.0.11",
     "jest": "^27.4.7",
