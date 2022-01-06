@@ -15,11 +15,11 @@ class UserRapo {
   static async insert(email: string, password: string) {
     try {
       const hashPassword = await Password.toHash(password);
-      const { rows } = await pool.query(
-        `INSERT INTO users(email, password) VALUES($1, $2)`,
+      const {rows}  = await pool.query(
+        `INSERT INTO users(email, password) VALUES($1, $2) RETURNING id`,
         [email, hashPassword]
       );
-      return rows;
+      return rows[0];
     } catch (err) {
       console.log(err);
     }

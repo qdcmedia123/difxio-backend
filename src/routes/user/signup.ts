@@ -27,8 +27,17 @@ async(req:Request, res:Response) => {
     }
     
     const saveUser = await UserRapo.insert(email, password);
+
+    const userJWT = jwt.sign({
+        id: saveUser.id,
+        email: email
+    }, process.env.JWT_KEY!);
     
-    return res.status(201).send(saveUser);
+    req.session = {
+        jwt: userJWT
+    };
+
+    return res.status(201).send(userJWT);
 
 })
 
