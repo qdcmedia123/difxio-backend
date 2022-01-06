@@ -4,7 +4,8 @@ class UserRapo {
   static async findByEmail(email: string) {
     try {
       const { rows } = await pool.query(
-        `SELECT id FROM users WHERE email='${email}'`
+        `SELECT id FROM users WHERE email= $1;`,
+        [email]
       );
       return rows;
     } catch (err) {
@@ -15,7 +16,8 @@ class UserRapo {
     try {
       const hashPassword = await Password.toHash(password);
       const { rows } = await pool.query(
-        `INSERT INTO users(email, password) VALUES('${email}', '${hashPassword}')`
+        `INSERT INTO users(email, password) VALUES($1, $2)`,
+        [email, hashPassword]
       );
       return rows;
     } catch (err) {

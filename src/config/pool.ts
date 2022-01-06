@@ -12,8 +12,8 @@ class Pool {
         return await this._pool.end();
     }
 
-    async query(sql) {
-        return await this._pool.query(sql);
+    async query(sql, params) {
+        return await this._pool.query(sql, params);
     }
 
 }
