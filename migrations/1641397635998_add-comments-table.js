@@ -11,8 +11,8 @@ exports.up = (pgm) => {
         film_id int NOT NULL,
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(id),
-        FOREIGN KEY (film_id) REFERENCES films(id)
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+        FOREIGN KEY (film_id) REFERENCES films(id) ON DELETE CASCADE
     )
     `);
 };
