@@ -7,8 +7,9 @@ exports.up = (pgm) => {
   pgm.sql(`
     CREATE TABLE comments(
         id SERIAL PRIMARY KEY,
-        user_id int NOT NULL,
-        film_id int NOT NULL,
+        user_id INTEGER,
+        film_id INTEGER,
+        comment TEXT,
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,

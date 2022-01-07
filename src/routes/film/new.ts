@@ -4,7 +4,6 @@ import { body } from "express-validator";
 import FilmRepo from "../../repos/film-rapo";
 
 import {
-  BadRequestError,
   validateRequest,
   requireAuth,
 } from "@wealthface/common";
@@ -56,4 +55,4 @@ router.post(
   }
 );
 
-export { router as newMovieRouter };
+export { router as newFilmRouter };

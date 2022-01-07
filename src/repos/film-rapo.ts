@@ -32,7 +32,6 @@ class FilmRepo {
   static async findById(id: any) {
     try {
       const {rows} = await pool.query(`SELECT * FROM films WHERE id = $1`, [id]);
-
       return rows;
     } catch (err) {
       console.log(err);
