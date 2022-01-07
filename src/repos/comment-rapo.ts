@@ -19,6 +19,18 @@ class CommentRapo {
       console.log(err);
     }
   }
+
+  static async findByFilmId(id: number) {
+    try {
+      const { rows } = await pool.query(
+        `SELECT * FROM comments WHERE film_id='${id}'`,
+        []
+      );
+      return rows;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
 }
 
 export default CommentRapo;

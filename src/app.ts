@@ -10,6 +10,7 @@ import { signoutRouter } from './routes/user/signout';
 import { showFilmRouter } from './routes/film/show';
 import { newFilmRouter } from './routes/film/new';
 import { newCommentRouter } from './routes/comment/new';
+import { indexCommentRouter } from './routes/comment';
 const app = express();
 
 // While using nginx/apache as proxy set this to true 
@@ -31,6 +32,7 @@ app.use(signoutRouter);
 app.use(showFilmRouter);
 app.use(newFilmRouter);
 app.use(newCommentRouter);
+app.use(indexCommentRouter);
 
 app.all('*', async() => {
     throw new NotFoundError();
