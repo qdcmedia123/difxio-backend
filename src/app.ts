@@ -4,7 +4,7 @@ import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 import { indexMovieRouter } from './routes/film';
 import { signupRouter } from './routes/user/signup';
-import { errorHandler, NotFoundError, currentUser } from "@wealthface/common";
+import { errorHandler, NotFoundError } from "@wealthface/common";
 import { currentUserRouter } from './routes/user/current-user';
 import { signoutRouter } from './routes/user/signout';
 import { showFilmRouter } from './routes/film/show';
@@ -25,7 +25,7 @@ app.use(
     })
   );
 
-app.use(currentUser);
+//app.use(currentUser);
 app.use(currentUserRouter);
 app.use(indexMovieRouter);
 app.use(signupRouter);
