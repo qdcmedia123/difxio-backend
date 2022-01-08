@@ -20,7 +20,7 @@ router.post(
     const { email, password } = req.body;
 
     const existingUser = await UserRapo.findByEmail(email);
-    
+
     if (existingUser.length !== 1) {
       throw new BadRequestError("Invalid credentials email");
     }
@@ -46,7 +46,7 @@ router.post(
       jwt: userJWT,
     };
 
-    res.status(201).send(existingUser);
+    res.status(201).send({ token: userJWT });
   }
 );
 
