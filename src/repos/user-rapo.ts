@@ -4,7 +4,7 @@ class UserRapo {
   static async findByEmail(email: string) {
     try {
       const { rows } = await pool.query(
-        `SELECT id FROM users WHERE email= $1;`,
+        `SELECT * FROM users WHERE email= $1;`,
         [email]
       );
       return rows;
@@ -28,6 +28,9 @@ class UserRapo {
     const { rows } = await pool.query(`SELECT COUNT(*) FROM users`, []);
     
     return parseInt(rows[0].count);
+  }
+  static async signin() {
+     await pool.query('SELECT id FROM users WHERE email = $1')
   }
 }
 

@@ -1,8 +1,8 @@
-// @ts-nocheck
+
 import pg from 'pg';
 
 class Pool {
-    _pool = null;
+    _pool:any = null;
 
     async connect(options:any) {
         this._pool = new pg.Pool(options);
@@ -12,7 +12,7 @@ class Pool {
         return await this._pool.end();
     }
 
-    async query(sql, params?) {
+    async query(sql:string, params?:object) {
         return await this._pool.query(sql, params);
     }
 

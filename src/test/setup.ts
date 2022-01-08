@@ -1,11 +1,4 @@
-// @ts-nocheck
-// import { app } from "../app";
-// import request from "supertest";
 import jwt from "jsonwebtoken";
-import pool from "../config/pool";
-import { randomBytes } from "crypto";
-import { default as migrate } from "node-pg-migrate";
-import format from "pg-format";
 import Context from "./context";
 
 declare global {
@@ -15,7 +8,7 @@ declare global {
     }
   }
 }
-let context;
+let context: any;
 
 beforeAll(async () => {
   context = await Context.build();
@@ -23,7 +16,6 @@ beforeAll(async () => {
   process.env.NODE_ENV = "test";
   process.env.JWT_KEY = "asdf";
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-  
 });
 
 afterAll(async () => {

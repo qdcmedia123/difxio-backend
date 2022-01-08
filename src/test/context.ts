@@ -1,5 +1,5 @@
-const { randomBytes } = require("crypto");
-const format = require("pg-format");
+import {  randomBytes} from "crypto";
+import format from "pg-format";
 const { default: migrate } = require("node-pg-migrate");
 import pool from "../config/pool";
 
@@ -81,4 +81,4 @@ class Context {
   }
 }
 
-module.exports = Context;
+export default Context;
