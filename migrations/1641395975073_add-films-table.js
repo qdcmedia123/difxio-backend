@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 
 exports.shorthands = undefined;
-
+const photo = 'https://gravatar.com/avatar/b5004e1e3270319c1b4e9fc61c3ab58a?s=400&d=robohash&r=x';
 exports.up = (pgm) => {
   pgm.sql(`
     CREATE TABLE films (
@@ -20,6 +20,28 @@ exports.up = (pgm) => {
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     )
     `);
+
+    if (process.env.JEST_TEST == 0) {
+      pgm.sql(
+        `INSERT INTO 
+        films
+        (
+         user_id, 
+         name, 
+         description, 
+         realease_date, 
+         rating,
+         ticket_price,
+         country,
+         genre,
+         photo
+         ) 
+         VALUES
+            (1, 'Test Movie', 'Test Description', '1999-01-08', 2, 100, 'UAE', array['thriller'], '${photo}'),
+            (1, 'Test Movie', 'Test Description', '1999-01-08', 2, 100, 'UAE', array['thriller'], '${photo}'),
+            (1, 'Test Movie', 'Test Description', '1999-01-08', 2, 100, 'UAE', array['thriller'], '${photo}')`
+      );
+    }
 };
 
 exports.down = (pgm) => {

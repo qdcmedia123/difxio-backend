@@ -3,7 +3,6 @@ import FilmRepo from "../../repos/film-rapo";
 
 const router = express.Router();
 
-//     body("photo").withMessage("genre date must be valid"),
 router.get('/api/films', async(_: Request, res:Response) => {
     try {
         const films = await FilmRepo.find();

@@ -39,8 +39,6 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    // Get the user id
-
     const user_id = req.currentUser!.id;
     const film = { user_id, ...req.body };
 

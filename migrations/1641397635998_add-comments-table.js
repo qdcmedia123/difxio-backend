@@ -16,6 +16,22 @@ exports.up = (pgm) => {
         FOREIGN KEY (film_id) REFERENCES films(id) ON DELETE CASCADE
     )
     `);
+
+  if (process.env.JEST_TEST == 0) {
+    pgm.sql(
+      `INSERT INTO 
+        comments
+        (
+         user_id, 
+         film_id, 
+         comment
+         ) 
+         VALUES
+            (1, 1, 'Test Comments'),
+            (1, 2, 'Test Comments'),
+            (1, 3, 'Test Comments')`
+    );
+  }
 };
 
 exports.down = (pgm) => {
