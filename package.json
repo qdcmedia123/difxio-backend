@@ -12,7 +12,15 @@
     "dev2": "ts-node --exec src/index.ts",
     "test": "jest --watchAll --no-cache",
     "migrate": "node-pg-migrate",
-    "test:ci": "jest"
+    "test:ci": "jest --no-cache"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "modulePathIgnorePatterns": ["<rootDir>/dist/"],
+    "setupFilesAfterEnv": [
+      "./src/test/setup.ts"
+    ]
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +29,7 @@
     "@types/express": "^4.17.13",
     "@types/jsonwebtoken": "^8.5.6",
     "@types/mongoose": "^5.11.97",
+    "@types/node": "^15.14.9",
     "@wealthface/common": "^1.0.32",
     "body-parser": "^1.19.1",
     "cookie-session": "^2.0.0",
@@ -36,9 +45,9 @@
     "typescript": "^4.5.4"
   },
   "devDependencies": {
+    "@types/node": "^15.12.2",
     "@types/dotenv": "^8.2.0",
     "@types/jest": "^27.4.0",
-    "@types/node": "^17.0.8",
     "@types/pg": "^8.6.3",
     "@types/supertest": "^2.0.11",
     "jest": "^27.4.7",

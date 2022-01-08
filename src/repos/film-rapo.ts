@@ -1,23 +1,5 @@
 import pool from "../config/pool";
 
-interface Film {
-  user_id: number;
-  name: string;
-  description: string;
-  realease_date: any;
-}
-
-/*
-user_id: number,
-    name: string,
-    description: string,
-    realease_date: string,
-    rating: number,
-    ticket_price: number,
-    country: string,
-    genre: object,
-    photo: string
-*/
 class FilmRepo {
   static async find() {
     try {
@@ -54,7 +36,7 @@ class FilmRepo {
             genre,
             photo
             ) 
-            VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
+            VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
         [
           film.user_id,
           film.name,

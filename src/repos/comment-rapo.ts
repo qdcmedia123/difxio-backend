@@ -11,7 +11,7 @@ class CommentRapo {
                 film_id, 
                 comment
                 ) 
-                VALUES($1, $2, $3) RETURNING id`,
+                VALUES($1, $2, $3) RETURNING *`,
         [comment.user_id, comment.film_id, comment.comment]
       );
       return rows[0];
