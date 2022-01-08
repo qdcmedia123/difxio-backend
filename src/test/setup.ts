@@ -4,9 +4,9 @@
 import jwt from "jsonwebtoken";
 import pool from "../config/pool";
 import { randomBytes } from "crypto";
-import {default as  migrate} from 'node-pg-migrate';
-import formate from "pg-format";
-
+import { default as migrate } from "node-pg-migrate";
+import format from "pg-format";
+import Context from "./context";
 
 declare global {
   namespace NodeJS {
@@ -15,39 +15,19 @@ declare global {
     }
   }
 }
-
-// declare module global {
-//   function signin(): string[];
-// }
+let context;
 
 beforeAll(async () => {
-  // Randomly generating a role name to connect to PG 
+  context = await Context.build();
 
-  // Cinnect to PG as usual
-  // Create a new role 
-  // Create a schema with the same name 
-  // Disconnect entirely from PG 
-  // Run our migration in the new schema 
-  // Connect to pg as the newly created rold 
-  // 
   process.env.NODE_ENV = "test";
   process.env.JWT_KEY = "asdf";
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-  return pool.connect({
-    host: "localhost",
-    port: 5432,
-    database: "difxio-test",
-    user: "limitless",
-    password: "",
-  });
-});
-
-beforeEach(async () => {
- console.log('runnin before each')
+  
 });
 
 afterAll(async () => {
-  return await pool.close();
+  return await context.close();
 });
 
 global.signin = () => {

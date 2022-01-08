@@ -12,7 +12,7 @@ class Pool {
         return await this._pool.end();
     }
 
-    async query(sql, params) {
+    async query(sql, params?) {
         return await this._pool.query(sql, params);
     }
 

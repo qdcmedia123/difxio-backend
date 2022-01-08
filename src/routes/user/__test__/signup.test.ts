@@ -3,21 +3,17 @@ import request from "supertest";
 import { app } from "../../../app";
 
 it("Return a 201 on sucessfull signup", async () => {
-
   const startingCount = await UserRapo.count();
-  expect(startingCount).toEqual(1);
+  expect(startingCount).toEqual(0);
   await request(app)
     .post("/api/users/signup")
     .send({
       email: "bharatrose1@gmail.com",
       password: "password",
     })
-    .expect(400);
-    const finishCount = await UserRapo.count();
-    expect(finishCount - startingCount).toEqual(0);
-
-    console.log(global.signin());
-    
+    .expect(201);
+  const finishCount = await UserRapo.count();
+  expect(finishCount).toEqual(1);
 });
 
 // it("Invalid email", async () => {
