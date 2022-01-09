@@ -20,7 +20,7 @@ router.post(
     const { email, password} = req.body;
 
     const existingUser = await UserRapo.findByEmail(email);
-    console.log('existingUser', existingUser)
+    
     if (existingUser.length !== 1) {
       throw new BadRequestError("Invalid credentials email");
     }

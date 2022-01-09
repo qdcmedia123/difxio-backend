@@ -27,7 +27,6 @@ afterAll(async () => {
 
 global.signin = async (e?: string) => {
   const email = e ? e : "bharatrose1@gmail.com";
-  console.log(email);
   const password = "password";
   const response = await request(app)
     .post("/api/users/signup")
@@ -38,8 +37,6 @@ global.signin = async (e?: string) => {
     .expect(201);
 
   const cookie = response.get("Set-Cookie");
-  console.log('cookie', cookie);
-  console.log('response', response.headers)
 
   return cookie;
 };

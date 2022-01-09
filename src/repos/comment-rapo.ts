@@ -29,8 +29,8 @@ class CommentRapo {
         CONCAT(users.first_name, ' ',users.last_name) as name 
         FROM comments 
         INNER JOIN users 
-        ON users.id = comments.id 
-        WHERE film_id='${id}'`,
+        ON users.id = comments.user_id
+        WHERE film_id='${id}' ORDER BY created_at DESC`,
         []
       );
       return rows;
