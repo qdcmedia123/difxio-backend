@@ -18,7 +18,7 @@ it("If user is not authenticated throw an error 401", async () => {
 });
 
 it("If film name is missing return bad request error then sucessfully create a film", async () => {
-  cookie = await global.signin();
+  cookie = await global.signin('bharatrose10@gmail.com');
   const res = await request(app)
     .post("/api/films")
     .set("Cookie", cookie)
