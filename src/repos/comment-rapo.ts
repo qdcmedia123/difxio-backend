@@ -23,7 +23,14 @@ class CommentRapo {
   static async findByFilmId(id: number) {
     try {
       const { rows } = await pool.query(
-        `SELECT * FROM comments WHERE film_id='${id}'`,
+        `SELECT comments.id, comments.user_id, comments.film_id, comments.comment,
+        comments.created_at, 
+        comments.updated_at, 
+        CONCAT(users.first_name, ' ',users.last_name) as name 
+        FROM comments 
+        INNER JOIN users 
+        ON users.id = comments.id 
+        WHERE film_id='${id}'`,
         []
       );
       return rows;

@@ -1,11 +1,9 @@
-const errors = [{message: 'this is message', field: 'password'},
-{message: 'this is message', field: 'password'}];
+const errs = [{message: 'genre price date must be valid', field: 'genre'},
+{message: 'genre price date must be valid', field: 'something'}];
+const newErr = {};
 
+const normolize = errs.forEach(err => {
+newErr[err.field] = err.message;
+})
 
-// Get the password error
-
-const errorToString = errors.map(error => {
-	return error.message;
-}).join('\r\n');
-
-console.log(errorToString)
+console.log(newErr)

@@ -17,8 +17,7 @@ body('email')
 ],
 validateRequest, 
 async(req:Request, res:Response) => {
-    const {email, password} = req.body;
-   
+    const {email, password, first_name = null, last_name } = req.body;
 
     const  ifUserExist = await UserRapo.findByEmail(email);
     
@@ -26,7 +25,7 @@ async(req:Request, res:Response) => {
         throw new BadRequestError('Email address already registered');
     }
     
-    const saveUser = await UserRapo.insert(email, password);
+    const saveUser = await UserRapo.insert(email, password, first_name, last_name);
 
     const userJWT = jwt.sign({
         id: saveUser.id,
@@ -37,7 +36,7 @@ async(req:Request, res:Response) => {
         jwt: userJWT
     };
 
-    return res.status(201).send(userJWT);
+    return res.status(201).send(saveUser);
 
 })
 

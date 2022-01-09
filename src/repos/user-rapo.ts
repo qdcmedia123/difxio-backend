@@ -12,12 +12,17 @@ class UserRapo {
       console.log(err);
     }
   }
-  static async insert(email: string, password: string) {
+  static async insert(
+    email: string,
+    password: string,
+    first_name: string,
+    last_name: string
+  ) {
     try {
       const hashPassword = await Password.toHash(password);
       const { rows } = await pool.query(
-        `INSERT INTO users(email, password) VALUES($1, $2) RETURNING *`,
-        [email, hashPassword]
+        `INSERT INTO users(email, password, first_name, last_name) VALUES($1, $2, $3, $4) RETURNING *`,
+        [email, hashPassword, first_name, last_name]
       );
       return rows[0];
     } catch (err) {
@@ -26,11 +31,11 @@ class UserRapo {
   }
   static async count() {
     const { rows } = await pool.query(`SELECT COUNT(*) FROM users`, []);
-    
+
     return parseInt(rows[0].count);
   }
   static async signin() {
-     await pool.query('SELECT id FROM users WHERE email = $1')
+    await pool.query("SELECT id FROM users WHERE email = $1");
   }
 }
 

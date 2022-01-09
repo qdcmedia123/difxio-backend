@@ -17,10 +17,10 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { email, password } = req.body;
+    const { email, password} = req.body;
 
     const existingUser = await UserRapo.findByEmail(email);
-
+    console.log('existingUser', existingUser)
     if (existingUser.length !== 1) {
       throw new BadRequestError("Invalid credentials email");
     }
@@ -36,8 +36,8 @@ router.post(
 
     const userJWT = jwt.sign(
       {
-        id: existingUser.id,
-        email: existingUser.email,
+        id: existingUser[0].id,
+        email: email,
       },
       process.env.JWT_KEY!
     );

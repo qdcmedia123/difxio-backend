@@ -15,15 +15,6 @@ import { indexCommentRouter } from "./routes/comment";
 import { signinRouter } from "./routes/user/signin";
 const app = express();
 
-app.set("trust proxy", true);
-app.use(json());
-app.use(
-  cookieSession({
-    signed: false,
-    secure: false, //process.env.NODE_ENV !== "development",
-    httpOnly: true,
-  })
-);
 app.use(
   cors({
     origin: [
@@ -33,6 +24,17 @@ app.use(
     credentials: true,
   })
 );
+
+app.set("trust proxy", true);
+app.use(json());
+app.use(
+  cookieSession({
+    signed: false,
+    secure: process.env.NODE_ENV !== "development", //process.env.NODE_ENV !== "development",
+    httpOnly: process.env.NODE_ENV !== "development",
+  })
+);
+
 
 app.use(currentUser);
 app.use(currentUserRouter);
