@@ -1,4 +1,5 @@
 // @ts-nocheck
+require("dotenv").config();
 import jwt from "jsonwebtoken";
 import Context from "./context";
 import request from "supertest";
@@ -13,12 +14,15 @@ declare global {
 let context: any;
 
 beforeAll(async () => {
-  context = await Context.build();
-
   process.env.NODE_ENV = "development";
   process.env.JWT_KEY = "TEST";
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
   process.env.JEST_TEST = 1;
+  
+  
+  context = await Context.build();
+
+ 
 });
 
 afterAll(async () => {

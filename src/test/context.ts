@@ -1,18 +1,17 @@
-import {  randomBytes} from "crypto";
+import { randomBytes } from "crypto";
 import format from "pg-format";
 const { default: migrate } = require("node-pg-migrate");
 import pool from "../config/pool";
 
 const DEFAULT_OPT = {
-  host: "localhost",
-  port: 5432,
-  database: "difxio-test",
-  user: "limitless",
-  password: "",
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_TEST_NAME,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
 };
 
 class Context {
-  
   static async build() {
     // Randomly generating a role name to connect to PG as
     const roleName = "a" + randomBytes(4).toString("hex");
@@ -41,9 +40,9 @@ class Context {
       noLock: true,
       dir: "migrations",
       databaseUrl: {
-        host: "localhost",
-        port: 5432,
-        database: "difxio-test",
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        database: process.env.DB_TEST_NAME,
         user: roleName,
         password: roleName,
       },
@@ -51,9 +50,9 @@ class Context {
 
     // Connect to PG as the newly created role
     await pool.connect({
-      host: "localhost",
-      port: 5432,
-      database: "difxio-test",
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      database: process.env.DB_TEST_NAME,
       user: roleName,
       password: roleName,
     });
@@ -73,9 +72,9 @@ class Context {
     await pool.connect(DEFAULT_OPT);
     // Delete role and schema
     // @ts-ignore
-    await pool.query(format('DROP SCHEMA %I CASCADE;', this.roleName))
-     // @ts-ignore
-    await pool.query(format('DROP ROLE %I', this.roleName));
+    await pool.query(format("DROP SCHEMA %I CASCADE;", this.roleName));
+    // @ts-ignore
+    await pool.query(format("DROP ROLE %I", this.roleName));
     // Disconnect
     await pool.close();
   }
