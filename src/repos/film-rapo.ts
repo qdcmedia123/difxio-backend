@@ -3,7 +3,7 @@ import pool from "../config/pool";
 class FilmRepo {
   static async find() {
     try {
-      const films = await pool.query("SELECT * FROM films", []);
+      const films = await pool.query("SELECT films.id, films.rating, films.ticket_price, films.name, films.photo  FROM films ORDER BY created_at DESC", []);
       const { rows } = films;
       return rows;
     } catch (err) {

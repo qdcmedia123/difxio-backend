@@ -18,11 +18,7 @@ beforeAll(async () => {
   process.env.JWT_KEY = "TEST";
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
   process.env.JEST_TEST = 1;
-  
-  
   context = await Context.build();
-
- 
 });
 
 afterAll(async () => {
