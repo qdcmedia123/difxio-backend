@@ -18,13 +18,12 @@ it("If user is not authenticated throw an error 401", async () => {
 });
 
 it("If film name is missing return bad request error then sucessfully create a film", async () => {
-  cookie = await global.signin('bharatrose10@gmail.com');
+  cookie = await global.signin('bharatrose50@gmail.com');
   await request(app)
     .post("/api/films")
     .set("Cookie", cookie)
     .send(film)
     .expect(400);
- 
 
   film = { ...film, name: "test film" };
 

@@ -26,7 +26,7 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { email, password, first_name = null, last_name } = req.body;
+    const { email, password, first_name = null, last_name = null } = req.body;
 
     const ifUserExist = await UserRapo.findByEmail(email);
 

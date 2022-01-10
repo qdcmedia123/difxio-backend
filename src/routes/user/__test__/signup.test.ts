@@ -42,6 +42,8 @@ it("Return a 201 on sucessfull signup", async () => {
   await request(app)
     .post("/api/users/signup")
     .send({
+      first_name: 'Bharat',
+      last_name: 'Shah',
       email: "bharatrose1@gmail.com",
       password: "password",
     })
@@ -54,6 +56,8 @@ it("return with 400 with invalid passwod length 4", async () => {
   return request(app)
     .post("/api/users/signup")
     .send({
+      first_name: 'Bharat',
+      last_name: 'Shah',
       email: "bharatrose1@",
       password: "pa",
     })
@@ -84,7 +88,9 @@ it("sets a cooki after succefull signup", async () => {
   const response = await request(app)
     .post("/api/users/signup")
     .send({
-      email: "bharatrose2@gmail.com",
+      first_name: 'Bharat',
+      last_name: 'Shah',
+      email: "bharatrose10@gmail.com",
       password: "password",
     })
     .expect(201);

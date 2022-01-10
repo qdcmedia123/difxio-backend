@@ -15,6 +15,8 @@ it("fails when an incorrent password is supplied", async () => {
   await request(app)
     .post("/api/users/signup")
     .send({
+      first_name: 'Bharat', 
+      last_name: 'Shah',
       email: "test@test.com",
       password: "password",
     })

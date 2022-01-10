@@ -15,7 +15,7 @@ let film: any = {
 
 it("Creating new comments", async () => {
   // Create user first
-  const cookie = await global.signin();
+  const cookie = await global.signin('bharatrose6@gmail.com');
   // Create film
   const res = await request(app)
     .post("/api/films")
@@ -24,7 +24,6 @@ it("Creating new comments", async () => {
     .expect(200);
 
   const resJson: any = JSON.parse(res.text);
-
   // Create comment
   await request(app)
     .post("/api/comments")
